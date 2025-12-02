@@ -11,8 +11,7 @@ export default function Header(){
                 backgroundClip: 'text'
             }}> CA Lottery Scratcher EV Calculator </h1>
             <p className="text-lg" style={{ color: '#8b7b6b' }}>
-            Compare expected values across California Lottery Scratcher games ✨
-            </p>
+            Compare expected values across California Lottery Scratcher games ✨</p>
         </header>
     )
     
