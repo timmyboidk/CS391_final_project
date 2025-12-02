@@ -1,12 +1,12 @@
 import Image from "next/image";
-import InstantAnalytics from '@/app/components/InstantAnalytics';
-import Header from '@/app/components/Header';
-
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 export default function Home() {
   return (
-      <div>
-          <Header/>
-          <InstantAnalytics/>
-      </div>
+      // Main Page Components Here (zach / alex)
+      <>
+        <Header/>
+        <Footer/>
+      </>
   );
 }
