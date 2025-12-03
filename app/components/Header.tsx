@@ -1,6 +1,11 @@
+// Header.tsx
+// Component for the Header content of our web app
+
+// imports for displaying our lgoo
 import Image from "next/image";
 import mm from "@/app/media/mass-money-logo.png";
 
+// main header section function...
 export default function Header(){
     return(
         <header className="bg-green-400 text-center p-2 flex flex-col items-center">
@@ -11,5 +16,4 @@ export default function Header(){
             Find your next win using expected values across Massachusetts Lottery Scratcher games! </p>
         </header>
     )
-    
 }
