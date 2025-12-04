@@ -4,8 +4,8 @@ import "./globals.css";
 //updated layout.tsx with metadata for project
 
 export const metadata: Metadata = {
-  title: 'CA Lottery Scratcher EV Calculator',
-  description: 'Calculate expected value for California Lottery Scratcher games',
+  title: 'MA Lottery Scratcher EV Calculator',
+  description: 'Calculate expected value for MA Lottery Scratcher games',
 }
 
 export default function RootLayout({
