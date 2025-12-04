@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import SearchBar from "./SearchBar";
 
 interface PrizeTier {
     prize: string;
@@ -40,6 +41,7 @@ export default function Table() {
     const [data, setData] = useState<GamesResponse | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => {
         async function load() {
@@ -79,6 +81,19 @@ export default function Table() {
 
     const { games, updatedAt } = data;
 
+    const lowerCased = searchTerm.trim().toLowerCase();
+
+    const filteredGames = games.filter((game)=>{
+        if(!lowerCased){
+             return true;
+        }
+        const nameMatch = game.name.toLowerCase().includes(lowerCased);
+        const numberMatch = game.gameNumber.toLowerCase().includes(lowerCased);
+        const priceMatch = game.price.toString().includes(lowerCased);
+
+        return nameMatch || numberMatch || priceMatch;
+    });
+
     return (
         <div className="mt-12 font-mono mx-auto max-w-4xl border-4 border-green-800 bg-white p-6">
             <div className="flex justify-between items-baseline mb-2 border-b-4 border-green-800 pb-2">
@@ -89,6 +104,14 @@ export default function Table() {
                     Updated: {new Date(updatedAt).toLocaleString()}
                 </p>
             </div>
+
+            <SearchBar
+                searchTerm={searchTerm}
+                onSearchTermChange={setSearchTerm}
+                loading={loading}
+                totalGames={games.length}
+                filteredGames={filteredGames.length}
+            />
 
             <div className="overflow-x-auto">
                 <table className="w-full border-collapse">
@@ -106,7 +129,7 @@ export default function Table() {
                     </thead>
 
                     <tbody>
-                    {games.map((game, idx) => (
+                    {filteredGames.map((game, idx) => (
                         <tr
                             key={game.gameNumber}
                             className={idx % 2 === 0 ? "bg-green-50" : "bg-green-100"}
@@ -152,7 +175,7 @@ export default function Table() {
                 </table>
 
                 <p className="mt-3 text-xs text-center text-green-700">
-                    Showing {games.length} scratch games from Mass Lottery.
+                    Showing {filteredGames.length} scratch games from Mass Lottery.
                 </p>
             </div>
         </div>

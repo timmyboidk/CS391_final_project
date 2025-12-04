@@ -1,0 +1,66 @@
+
+"use client";
+
+import React from "react";
+
+interface SearchBarProps {
+    searchTerm: string;
+    onSearchTermChange: (value: string) => void;
+    loading?: boolean;
+    totalGames:number;
+    filteredGames: number;
+}
+
+
+
+
+const SearchBar: React.FC<SearchBarProps>=({
+    searchTerm,
+    onSearchTermChange,
+    loading = false,
+    totalGames,
+    filteredGames,
+})=>{
+    return (
+            <div className="mb-6 flex flex-col gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center justify-center">
+                {/* Search input */}
+                <div className="flex items-center gap-3 flex-1 max-w-md">
+                    <div className="text-2xl">🔍</div>
+                    <input
+                        type="text"
+                        placeholder="Search by game name, number, or price..."
+                        value={searchTerm}
+                        onChange={(e) => onSearchTermChange(e.target.value)}
+                        className="flex-1 px-4 py-3 rounded-2xl shadow-md focus:outline-none focus:shadow-lg"
+                        style={{
+                        backgroundColor: "#ffffff",
+                        border: "2px solid #fcd5ce",
+                        color: "#5a4a42",
+                        }}
+                    />
+                </div>
+
+                {/* Count of visible vs total games */}
+                {!loading && (
+                <div
+                    className="px-6 py-3 rounded-2xl shadow-md text-center"
+                    style={{
+                    backgroundColor: "#ffe5d9",
+                    color: "#8b7b6b",
+                    fontWeight: 600,
+                    }}
+                >
+                    {filteredGames} of {totalGames} games
+                </div>
+                )}
+            </div>
+        </div>
+    );
+}
+    
+
+
+export default SearchBar;
+
+        

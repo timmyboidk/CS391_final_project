@@ -10,9 +10,10 @@ export default function HomePage() {
             <Header />
 
             <main className="flex-1 p-4">
-                <Legend />
+                
                 <Table />
                 <InstantAnalytics/>
+                <Legend />
             </main>
 
             <Footer />
