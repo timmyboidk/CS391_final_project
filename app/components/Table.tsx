@@ -1,3 +1,24 @@
+/*
+ * Component: Data Table
+ * ----------------------------------------------------------------------------
+ * Responsible: [INSERT MEMBER NAME]
+ *
+ * Description:
+ * This component fetches and displays the full dataset of scratcher games.
+ * It includes interactive features like sorting by column and filtering via search.
+ *
+ * Logic & Reasoning:
+ * 1. Data Fetching: We use `useEffect` to fetch from our internal API (/api/games).
+ * This ensures we decouple the frontend from the direct DB connection.
+ * 2. Sorting: We implemented a custom `colSort` function using `useState`.
+ * We sort client-side (using JavaScript's .sort()) rather than server-side
+ * because the dataset (< 100 items) is small enough that a DB query would be
+ * slower than local processing.
+ * 3. Search: The search logic filters the `games` array in real-time based on
+ * user input before mapping it to the DOM.
+ * ----------------------------------------------------------------------------
+ */
+
 "use client";
 
 import { useEffect, useState } from "react";

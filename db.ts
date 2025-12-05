@@ -1,3 +1,21 @@
+/*
+ * Database Configuration: MongoDB Connection
+ * ----------------------------------------------------------------------------
+ * Responsible: [INSERT MEMBER NAME]
+ *
+ * Description:
+ * Manages the connection pool to the MongoDB database.
+ *
+ * Logic & Reasoning:
+ * - Singleton Pattern: We implement a global caching mechanism for the
+ * MongoClient (`client` and `db` variables). This prevents creating
+ * a new connection on every API call, which would exhaust database limits
+ * and slow down the application in a serverless environment (like Vercel).
+ * - Environment Safety: We explicitly check for `MONGO_URI` to fail fast
+ * if the configuration is missing.
+ * ----------------------------------------------------------------------------
+ */
+
 import { MongoClient, Db, Collection } from "mongodb";
 
 const MONGO_URI = process.env.MONGO_URI as string;

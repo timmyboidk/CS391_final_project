@@ -1,3 +1,11 @@
+/*
+ * Component: Header
+ * ----------------------------------------------------------------------------
+ * Responsible: [INSERT MEMBER NAME]
+ * Description: Static header component displaying the branding and logo.
+ * ----------------------------------------------------------------------------
+ */
+
 // Header.tsx
 // Component for the Header content of our web app
 

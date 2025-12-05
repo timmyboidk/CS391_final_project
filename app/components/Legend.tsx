@@ -1,3 +1,19 @@
+/*
+ * Component: Legend by Zaiyang Yu
+ * ----------------------------------------------------------------------------
+ * Responsible: [INSERT MEMBER NAME]
+ *
+ * Description:
+ * A static informational component that explains the terminology and metrics
+ * used throughout the application (e.g., EV, Scarcity, High Stock).
+ *
+ * Logic & Reasoning:
+ * - We separated this into its own component to keep the main page clean.
+ * - It uses a definition list (<dl>) structure for semantic correctness and accessibility.
+ * - Styling is consistent with the app's green theme to maintain visual hierarchy.
+ * ----------------------------------------------------------------------------
+ */
+
 // Legend.tsx
 // Component for the legend content of our web app
 

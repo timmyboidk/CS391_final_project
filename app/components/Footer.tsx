@@ -1,3 +1,11 @@
+/*
+ * Component: Footer
+ * ----------------------------------------------------------------------------
+ * Responsible: [INSERT MEMBER NAME]
+ * Description: Static footer displaying copyright and team members.
+ * ----------------------------------------------------------------------------
+ */
+
 // Footer.tsx
 // Component for the footer content of our web app
 

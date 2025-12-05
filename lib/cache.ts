@@ -1,3 +1,19 @@
+/*
+ * Library: In-Memory Cache Utility
+ * ----------------------------------------------------------------------------
+ * Responsible: [INSERT MEMBER NAME]
+ *
+ * Description:
+ * A simple in-memory caching class to store temporary data.
+ *
+ * Logic & Reasoning:
+ * - While we moved to MongoDB for persistence, this class remains useful for
+ * short-term caching during development or for specific non-persistent tasks.
+ * - It implements a Time-To-Live (TTL) mechanism to automatically invalidate
+ * stale data, preventing memory leaks and ensuring data freshness.
+ * ----------------------------------------------------------------------------
+ */
+
 interface CacheEntry<T> {
     data: T;
     timestamp: number;

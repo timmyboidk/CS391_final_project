@@ -1,3 +1,24 @@
+/*
+ * API Route: GET /api/games
+ * ----------------------------------------------------------------------------
+ * Responsible: [INSERT MEMBER NAME]
+ *
+ * Description:
+ * Server-side API endpoint that handles data retrieval for the frontend.
+ * It implements a "Stale-While-Revalidate" strategy using MongoDB.
+ *
+ * Logic & Reasoning:
+ * 1. Reliability: We wrap the DB connection in a try/catch block. If the DB fails,
+ * we gracefully fall back to a live scrape so the user never sees a broken page.
+ * 2. Performance: We query MongoDB for the most recent snapshot (`sort: { updatedAt: -1 }`).
+ * If data exists, it is returned immediately (fast).
+ * 3. Freshness: We use Next.js `after()` to trigger a background scrape *after*
+ * the response is sent. This updates the DB without making the user wait.
+ * 4. Force Dynamic: We export `dynamic = 'force-dynamic'` to prevent Vercel/Next.js
+ * from serving static build-time data, ensuring we always hit our logic.
+ * ----------------------------------------------------------------------------
+ */
+
 import { NextResponse } from 'next/server';
 import { after } from 'next/server';
 import getCollection from '@/db';

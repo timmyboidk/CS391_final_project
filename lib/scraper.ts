@@ -1,3 +1,25 @@
+/*
+ * Library: Web Scraper Module
+ * ----------------------------------------------------------------------------
+ * Responsible: [INSERT MEMBER NAME]
+ *
+ * Description:
+ * This module is responsible for navigating the Massachusetts Lottery website
+ * and extracting raw game data.
+ *
+ * Logic & Reasoning:
+ * 1. Hybrid Approach: We use a combination of `fetch` for the main API list
+ * (fast) and `Puppeteer` (headless browser) for individual game pages.
+ * Puppeteer is necessary because the lottery site uses dynamic JavaScript
+ * to render prize tables, which standard fetch/Cheerio cannot see.
+ * 2. Concurrency Control: We implemented a `processBatch` function with a
+ * limit (MAX_CONCURRENT_BROWSERS = 3) to prevent crashing the server's
+ * memory when scraping dozens of pages simultaneously.
+ * 3. Robust Parsing: We use specific regex patterns to handle inconsistent
+ * text formats (e.g., "$250,000" vs "Free Ticket").
+ * ----------------------------------------------------------------------------
+ */
+
 import * as cheerio from 'cheerio';
 import puppeteer from 'puppeteer';
 import {LotteryGame, PrizeTier} from '@/types/lottery';

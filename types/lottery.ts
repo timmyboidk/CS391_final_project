@@ -1,3 +1,19 @@
+/*
+ * Type Definitions: Lottery Interfaces
+ * ----------------------------------------------------------------------------
+ * Responsible: [INSERT MEMBER NAME]
+ *
+ * Description:
+ * Centralized TypeScript interfaces for the project's data structures.
+ *
+ * Logic & Reasoning:
+ * - Using a centralized types file ensures consistency across the Scraper,
+ * Calculator, API, and Frontend Components.
+ * - `GameWithEV` extends `LotteryGame`, inheriting all its properties while
+ * adding the calculated fields. This keeps our types DRY (Don't Repeat Yourself).
+ * ----------------------------------------------------------------------------
+ */
+
 export interface PrizeTier {
     prize: string;
     prizeValue: number;

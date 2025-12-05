@@ -1,3 +1,25 @@
+/*
+ * Library: Expected Value (EV) Calculator
+ * ----------------------------------------------------------------------------
+ * Responsible: [INSERT MEMBER NAME]
+ *
+ * Description:
+ * A pure utility module that performs the mathematical heavy lifting for the project.
+ * It transforms raw prize data into standardized statistical metrics.
+ *
+ * Logic & Reasoning:
+ * 1. Estimation Strategy: Since the total number of tickets printed is not
+ * publicly listed, we estimate it using the Median of (Odds * Initial Prizes)
+ * across all tiers. The median is chosen over the mean to avoid skewing results
+ * based on outliers in the prize structure.
+ * 2. Net EV: We calculate "Net EV" (EV - Price) to give users a realistic
+ * view of their expected return (usually negative).
+ * 3. Separation of Concerns: This logic is isolated from the scraper so it can
+ * be unit-tested or modified (e.g., changing the estimation formula) without
+ * breaking the data fetching layer.
+ * ----------------------------------------------------------------------------
+ */
+
 import { LotteryGame, GameWithEV, PrizeTier } from '@/types/lottery';
 
 

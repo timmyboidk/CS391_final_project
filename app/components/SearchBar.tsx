@@ -1,3 +1,18 @@
+/*
+ * Component: Search Bar
+ * ----------------------------------------------------------------------------
+ * Responsible: [INSERT MEMBER NAME]
+ *
+ * Description:
+ * A reusable UI component for filtering data tables.
+ *
+ * Logic & Reasoning:
+ * - We "lifted state up" to the parent (Table.tsx). This component relies purely
+ * on props (`searchTerm`, `onSearchTermChange`) rather than managing its own state.
+ * - This makes the component a "Pure Component" (or controlled component),
+ * making it easier to test and reuse in other parts of the app if needed.
+ * ----------------------------------------------------------------------------
+ */
 
 "use client";
 

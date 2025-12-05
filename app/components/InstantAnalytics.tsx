@@ -1,3 +1,22 @@
+/*
+ * Component: Instant Market Analytics by Zaiyang Yu
+ * ----------------------------------------------------------------------------
+ * Responsible: [INSERT MEMBER NAME]
+ *
+ * Description:
+ * A dashboard widget that processes raw game data into actionable insights:
+ * Best Value, Scarcity (Ending Soon), and High Inventory games.
+ *
+ * Logic & Reasoning:
+ * 1. Performance: We utilize the `useMemo` hook for the statistical calculations.
+ * Since filtering through the game array is computationally expensive, `useMemo`
+ * ensures we only recalculate these stats when the source `data` changes,
+ * preventing unnecessary re-renders when the user interacts with other parts of the UI.
+ * 2. Scarcity Logic: We specifically defined "Scarce" as games with <= 5 top prizes
+ * remaining to create a sense of urgency for the user based on real data.
+ * ----------------------------------------------------------------------------
+ */
+
 'use client';
 
 import { useEffect, useState, useMemo } from 'react';
