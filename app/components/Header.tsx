@@ -6,7 +6,7 @@
  * ----------------------------------------------------------------------------
  */
 
-// Header.tsx
+// Header.tsx - Alex's Code
 // Component for the Header content of our app...
 
 // imports for displaying our logo image...

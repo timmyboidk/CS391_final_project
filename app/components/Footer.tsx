@@ -6,7 +6,7 @@
  * ----------------------------------------------------------------------------
  */
 
-// Footer.tsx
+// Footer.tsx - Alex's Code
 // Component for the footer content of our app...
 
 // main footer section function...

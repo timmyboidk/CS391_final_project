@@ -67,6 +67,7 @@ export default function Table() {
     const [error, setError] = useState<string | null>(null);
     const [searchTerm, setSearchTerm] = useState("");
 
+    // Start of Alex's Sorting Code
     // creating a hook of which attribute to sort by (starting just with name we can change if we want)
     const [sortKey, setSortKey] = useState<keyof GameWithEV>('name');
     // using another hook to decide what direction to sort (ascending or descending)
@@ -86,6 +87,7 @@ export default function Table() {
         setSortDir('ascending');
         setSortKey(key);
     }
+    // End of Alex's Sorting Code
 
     useEffect(() => {
         async function load() {
@@ -138,7 +140,7 @@ export default function Table() {
         return nameMatch || numberMatch || priceMatch;
     });
 
-    // sorting using the hooks and comparisons...
+    // Alex's continued sorting code - sorting using the hooks and comparisons...
     const sorted = [...filteredGames].sort((a, b) => {
         const v1 = a[sortKey];
         const v2 = b[sortKey];
@@ -159,6 +161,7 @@ export default function Table() {
             return n2 - n1;
         }
     });
+    // End of Alex's continued Sorting Code
 
     return (
         <div className="mt-12 font-mono mx-auto max-w-4xl border-4 border-green-800 bg-white p-6">
