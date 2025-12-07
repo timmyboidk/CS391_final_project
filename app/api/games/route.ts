@@ -1,7 +1,9 @@
 /*
  * API Route: GET /api/games
  * ----------------------------------------------------------------------------
- * Responsible: Natalie King, Zaiyang Yu
+ * Responsible: Natalie King (Initial Implementation), Zaiyang Yu (Database & Concurrency Control)
+ *
+ * Description:
  *
  * Description:
  * Server-side API endpoint that handles data retrieval for the frontend.

@@ -34,7 +34,7 @@ export default function InstantAnalytics() {
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        // 1. Fetch from the working /api/games endpoint (same as Table.tsx)
+        //Fetch from the working /api/games endpoint (same as Table.tsx)
         fetch('/api/games')
             .then(async (res) => {
                 if (!res.ok) throw new Error(`API Error: ${res.status}`);
@@ -51,7 +51,7 @@ export default function InstantAnalytics() {
             });
     }, []);
 
-    // 2. Calculate the "Digest" stats client-side with NEW Logic
+    // Calculate the "Digest" stats client-side with NEW Logic
     const stats = useMemo(() => {
         if (!data || !data.games) return null;
 
