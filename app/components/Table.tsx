@@ -1,7 +1,8 @@
 /*
  * Component: Data Table
  * ----------------------------------------------------------------------------
- * Responsible: Alex Olson (Implementation, Design), Zachary Memoli (Search Implementation only)
+ * Responsible: Alex Olson (Design, Sorting Feature), Zachary Memoli (Search Implementation only)
+ * Also assisted by Natalie King (getting the data from the backend to be sorted)
  *
  * Description:
  * This component fetches and displays the full dataset of scratcher games.
