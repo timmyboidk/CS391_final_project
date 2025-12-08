@@ -1,7 +1,7 @@
 /*
  * Component: Footer
  * ----------------------------------------------------------------------------
- * Responsible: Zachary Memoli 
+ * Responsible: Zachary Memoli & Alex Olson
  * Description: Static footer displaying copyright and team members.
  * ----------------------------------------------------------------------------
  */
