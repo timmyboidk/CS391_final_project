@@ -29,14 +29,17 @@ import { calculateEVForGames } from '@/lib/ev-calculator';
 
 export const dynamic = 'force-dynamic';
 
-// Global lock to prevent multiple simultaneous scrapes
+// [Zaiyang Yu] Concurrency Control: Global lock variable
+// Lives in server memory to prevent multiple overlapping scrape jobs
 let isRefreshing = false;
 
 export async function GET() {
     let collection = null;
     let cachedData = null;
 
-    // 1. Try to connect to DB and get cache (Safely)
+    // [Zaiyang Yu] Database Integration: Connection & Cache Retrieval
+    // Safely attempt to connect to MongoDB and retrieve the latest snapshot.
+    // Wrapped in try/catch so DB failures don't crash the entire app.
     try {
         collection = await getCollection('games');
         cachedData = await collection.findOne(
@@ -52,13 +55,14 @@ export async function GET() {
     const performBackgroundRefresh = async () => {
         if (!collection) return; // Cannot save if DB is down
 
-        // Check if a refresh is already running
+        // [Zaiyang Yu] Concurrency Control: Lock Check
+        // If a job is already running, exit immediately to save resources.
         if (isRefreshing) {
             console.log('Background refresh already in progress. Skipping.');
             return;
         }
 
-        // Set the lock
+        // [Zaiyang Yu] Concurrency Control: Set Lock
         isRefreshing = true;
         console.log('Starting background data refresh...');
 
@@ -70,27 +74,30 @@ export async function GET() {
                 updatedAt: new Date().toISOString(),
                 games: gamesWithEV,
             };
-
+            // [Zaiyang Yu] Database Integration: Persistence
+            // Save the newly scraped data to MongoDB for future requests
             await collection.insertOne(payload);
             console.log('Background refresh complete.');
         } catch (err) {
             console.error('Background refresh failed:', err);
         } finally {
-            // Always release the lock, even if it fails
+            // [Zaiyang Yu] Concurrency Control: Release Lock
+            // Ensure lock is released even if the scrape fails
             isRefreshing = false;
         }
     };
 
-    // 2. Decide: Return Cache or Scrape Live
+    // [Zaiyang Yu] Logic: Cache Hit vs Miss Strategy
     if (cachedData) {
-        // HIT: Return fast data, update in background
+        // HIT: Return fast data immediately, then trigger background refresh
         after(performBackgroundRefresh);
 
         return NextResponse.json(cachedData, {
             headers: { 'X-Data-Source': 'MongoDB-Cache' },
         });
     } else {
-        // MISS (or DB down): Scrape live (Slow but reliable)
+        // MISS (or DB down): Fallback to synchronous live scrape
+        // This ensures the user gets data even if it's the very first run
         try {
             console.log('No cache available. Scraping live...');
             const rawGames = await getAllGames();
@@ -101,7 +108,7 @@ export async function GET() {
                 games: gamesWithEV,
             };
 
-            // Try to save to DB for next time, if connection exists
+            // [Zaiyang Yu] Database Integration: Save Fallback Data
             if (collection) {
                 try {
                     await collection.insertOne(payload);
